@@ -6,7 +6,7 @@ public class SuccessEvents
 
     public event Operation Created;
     public event Operation Removed;
-    
+
     public void OnCreated(object data)
     {
         Created?.Invoke(data);
