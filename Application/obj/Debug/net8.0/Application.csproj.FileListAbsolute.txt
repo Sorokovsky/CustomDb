@@ -12,3 +12,8 @@
 /Users/andrijsorokovskij/Documents/programming/C#/Database/Application/obj/Debug/net8.0/Application.pdb
 /Users/andrijsorokovskij/Documents/programming/C#/Database/Application/obj/Debug/net8.0/Application.genruntimeconfig.cache
 /Users/andrijsorokovskij/Documents/programming/C#/Database/Application/obj/Debug/net8.0/ref/Application.dll
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Application/bin/Debug/net8.0/Database.dll
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Application/bin/Debug/net8.0/Database.pdb
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Application/obj/Debug/net8.0/Application.csproj.AssemblyReference.cache
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Application/obj/Debug/net8.0/Application.sourcelink.json
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Application/obj/Debug/net8.0/Applicat.44B5EDA2.Up2Date

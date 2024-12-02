@@ -6,4 +6,24 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Content Include="bin\Debug\net8.0\Database.pdb"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="bin\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="bin\Debug\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="bin\Debug\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="bin\Debug\**"/>
+    </ItemGroup>
+
 </Project>
