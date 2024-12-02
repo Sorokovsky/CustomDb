@@ -22,7 +22,7 @@ public class Repository<T>
     {
         var addedItem = _list.AddLast(item).Value;
         Save();
-        if (item != null) DbContext.SuccessEvents.OnCreated(item);
+        if (item != null) DbContext.Events.OnCreated(item);
         return addedItem;
     }
 
@@ -34,20 +34,34 @@ public class Repository<T>
     public void Remove(Predicate predicate)
     {
         var candidates = Find(predicate).ToList();
+        if (candidates.Count == 0)
+        {
+            DbContext.Events.OnNotRemoved($"Not found: {typeof(T).Name} to remove.");
+            return;
+        }
+
         candidates.ForEach(x =>
         {
             _list.Remove(x);
-            if (x != null) DbContext.SuccessEvents.OnRemoved(x);
+            if (x != null) DbContext.Events.OnRemoved(x);
         });
         Save();
     }
 
     public void Sort(Comparer<T> comparer)
     {
-        var sorted = _list.ToList();
-        sorted.Sort(comparer);
-        _list = new LinkedList<T>(sorted);
-        Save();
+        try
+        {
+            var sorted = _list.ToList();
+            sorted.Sort(comparer);
+            _list = new LinkedList<T>(sorted);
+            DbContext.Events.OnSorted(List.Count);
+            Save();
+        }
+        catch (Exception e)
+        {
+            DbContext.Events.OnNotSorted(e.Message);
+        }
     }
 
     private void Save()
