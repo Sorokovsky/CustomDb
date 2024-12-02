@@ -1,0 +1,12 @@
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/bin/Debug/net8.0/Database.deps.json
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/bin/Debug/net8.0/Database.dll
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/bin/Debug/net8.0/Database.pdb
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.AssemblyInfoInputs.cache
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.AssemblyInfo.cs
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.csproj.CoreCompileInputs.cache
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.sourcelink.json
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.dll
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/refint/Database.dll
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.pdb
+/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/ref/Database.dll
