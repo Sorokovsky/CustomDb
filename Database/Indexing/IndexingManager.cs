@@ -1,6 +1,8 @@
+using Database.Core;
+
 namespace Database.Indexing;
 
-public class IndexingSystem
+public class IndexingManager
 {
     private readonly LinkedList<Index> _indexes = [];
 
@@ -14,6 +16,29 @@ public class IndexingSystem
         return GetBy(type, index => index.Dependency, index => index.DependsOn);
     }
 
+    public void RemoveIndex(IsNeed isNeed)
+    {
+        var candidates = _indexes.Where(x => isNeed(x)).ToList();
+        if (candidates.Count == 0)
+        {
+            DbContext.Events.OnNotRemoved($"No one index found.");
+        }
+        else
+        {
+            candidates.ForEach(x =>
+            {
+                _indexes.Remove(x);
+                DbContext.Events.OnRemoved(x);
+            });
+        }
+    }
+
+    public void Add(Index index)
+    {
+        _indexes.AddLast(index);
+        DbContext.Events.OnCreated(index);
+    }
+
     private List<IndexUnit> GetBy(Type type, SelectUnit selectSource, SelectUnit selectResult)
     {
         return _indexes
@@ -23,4 +48,6 @@ public class IndexingSystem
     }
 
     private delegate IndexUnit SelectUnit(Index index);
+
+    public delegate bool IsNeed(Index index);
 }
