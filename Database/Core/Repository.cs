@@ -77,7 +77,7 @@ public class Repository<T>
             candidates.ForEach(x =>
             {
                 _list.Find(x)!.Value = item;
-                if (x != null) DbContext.Events.OnUpdated(x);
+                if (item != null) DbContext.Events.OnUpdated(x);
             });
             Save();
         }
