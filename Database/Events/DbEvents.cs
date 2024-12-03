@@ -2,11 +2,11 @@ namespace Database.Events;
 
 public class DbEvents
 {
-    public delegate void Operation(object data);
+    public delegate void ErrorOperation(string message);
 
     public delegate void Group(int count);
 
-    public delegate void ErrorOperation(string message);
+    public delegate void Operation(object data);
 
     public event Operation Created;
     public event Operation Removed;
@@ -14,11 +14,11 @@ public class DbEvents
     public event Group Sorted;
 
     public event ErrorOperation NotRemoved;
-    
+
     public event ErrorOperation NotSorted;
-    
+
     public event Operation Updated;
-    
+
     public event ErrorOperation NotUpdated;
 
     public void OnCreated(object data)

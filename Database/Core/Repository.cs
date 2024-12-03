@@ -26,7 +26,7 @@ public class Repository<T>
         return addedItem;
     }
 
-    public IEnumerable<T> Find(Predicate isNeed)
+    private IEnumerable<T> Find(Predicate isNeed)
     {
         return List.Where(x => isNeed(x));
     }
