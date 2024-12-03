@@ -28,7 +28,7 @@ public class Repository<T>
 
     public IEnumerable<T> Find(Predicate predicate)
     {
-        return _list.Where(x => predicate(x));
+        return List.Where(x => predicate(x));
     }
 
     public void Remove(Predicate predicate)
