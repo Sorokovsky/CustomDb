@@ -16,6 +16,10 @@ public class DbEvents
     public event ErrorOperation NotRemoved;
     
     public event ErrorOperation NotSorted;
+    
+    public event Operation Updated;
+    
+    public event ErrorOperation NotUpdated;
 
     public void OnCreated(object data)
     {
@@ -40,5 +44,15 @@ public class DbEvents
     public void OnNotSorted(string message)
     {
         NotSorted?.Invoke(message);
+    }
+
+    public void OnUpdated(object data)
+    {
+        Updated?.Invoke(data);
+    }
+
+    public void OnNotUpdated(string message)
+    {
+        NotUpdated?.Invoke(message);
     }
 }

@@ -26,9 +26,9 @@ public class Repository<T>
         return addedItem;
     }
 
-    public IEnumerable<T> Find(Predicate predicate)
+    public IEnumerable<T> Find(Predicate isNeed)
     {
-        return List.Where(x => predicate(x));
+        return List.Where(x => isNeed(x));
     }
 
     public void Remove(Predicate predicate)
@@ -37,15 +37,16 @@ public class Repository<T>
         if (candidates.Count == 0)
         {
             DbContext.Events.OnNotRemoved($"Not found: {typeof(T).Name} to remove.");
-            return;
         }
-
-        candidates.ForEach(x =>
+        else
         {
-            _list.Remove(x);
-            if (x != null) DbContext.Events.OnRemoved(x);
-        });
-        Save();
+            candidates.ForEach(x =>
+            {
+                _list.Remove(x);
+                if (x != null) DbContext.Events.OnRemoved(x);
+            });
+            Save();
+        }
     }
 
     public void Sort(Comparer<T> comparer)
@@ -61,6 +62,24 @@ public class Repository<T>
         catch (Exception e)
         {
             DbContext.Events.OnNotSorted(e.Message);
+        }
+    }
+
+    public void Update(Predicate isNeed, T item)
+    {
+        var candidates = Find(isNeed).ToList();
+        if (candidates.Count == 0)
+        {
+            DbContext.Events.OnNotUpdated($"Not found: {typeof(T).Name} to update.");
+        }
+        else
+        {
+            candidates.ForEach(x =>
+            {
+                _list.Find(x)!.Value = item;
+                if (x != null) DbContext.Events.OnUpdated(x);
+            });
+            Save();
         }
     }
 
