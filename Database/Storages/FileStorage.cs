@@ -5,12 +5,13 @@ namespace Database.Storages;
 
 public class FileStorage<T> : IStorage<T> where T : class
 {
-    private const string Folder = "database";
     private readonly string _filePath;
+    private readonly string _folder;
 
-    public FileStorage(string filePath)
+    public FileStorage(string folder, string filePath)
     {
-        _filePath = $"{Folder}/{filePath}.dat";
+        _folder = folder;
+        _filePath = $"{_folder}/{filePath}.dat";
     }
 
     public T? Load()
@@ -24,7 +25,7 @@ public class FileStorage<T> : IStorage<T> where T : class
 
     public void Save(T data)
     {
-        if (Directory.Exists(Folder) == false) Directory.CreateDirectory(Folder);
+        if (Directory.Exists(_folder) == false) Directory.CreateDirectory(_folder);
         var mode = FileMode.OpenOrCreate;
         if (File.Exists(_filePath)) mode = FileMode.Truncate;
         var text = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });

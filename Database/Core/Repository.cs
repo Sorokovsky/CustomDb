@@ -12,7 +12,7 @@ public class Repository<T>
 
     public Repository(string filePath)
     {
-        _storage = new FileStorage<LinkedList<T>>(filePath);
+        _storage = new FileStorage<LinkedList<T>>("database", filePath);
         Load();
     }
 
