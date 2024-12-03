@@ -16,7 +16,7 @@ public class IndexingManager
         return GetBy(type, index => index.Dependency, index => index.DependsOn);
     }
 
-    public void RemoveIndex(IsNeed isNeed)
+    public void Remove(IsNeed isNeed)
     {
         var candidates = _indexes.Where(x => isNeed(x)).ToList();
         if (candidates.Count == 0)
