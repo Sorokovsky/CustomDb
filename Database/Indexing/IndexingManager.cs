@@ -4,6 +4,8 @@ namespace Database.Indexing;
 
 public class IndexingManager
 {
+    public delegate bool IsNeed(Index index);
+
     private readonly LinkedList<Index> _indexes = [];
 
     public List<IndexUnit> GetDependencies(Type type)
@@ -20,17 +22,13 @@ public class IndexingManager
     {
         var candidates = _indexes.Where(x => isNeed(x)).ToList();
         if (candidates.Count == 0)
-        {
-            DbContext.Events.OnNotRemoved($"No one index found.");
-        }
+            DbContext.Events.OnNotRemoved("No one index found.");
         else
-        {
             candidates.ForEach(x =>
             {
                 _indexes.Remove(x);
                 DbContext.Events.OnRemoved(x);
             });
-        }
     }
 
     public void Add(Index index)
@@ -48,6 +46,4 @@ public class IndexingManager
     }
 
     private delegate IndexUnit SelectUnit(Index index);
-
-    public delegate bool IsNeed(Index index);
 }
