@@ -9,6 +9,6 @@ public class IndexUnit
     }
 
     public Type Type { get; private set; }
-    
+
     public string FieldName { get; private set; }
 }

@@ -9,6 +9,6 @@ public class Index
     }
 
     public IndexUnit Dependency { get; private set; }
-    
+
     public IndexUnit DependsOn { get; private set; }
 }

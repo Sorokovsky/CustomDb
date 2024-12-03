@@ -4,8 +4,6 @@ public class IndexingSystem
 {
     private readonly LinkedList<Index> _indexes = [];
 
-    private delegate IndexUnit SelectUnit(Index index);
-
     public List<IndexUnit> GetDependencies(Type type)
     {
         return GetBy(type, index => index.DependsOn, index => index.Dependency);
@@ -23,4 +21,6 @@ public class IndexingSystem
             .Select(index => selectResult(index))
             .ToList();
     }
+
+    private delegate IndexUnit SelectUnit(Index index);
 }
