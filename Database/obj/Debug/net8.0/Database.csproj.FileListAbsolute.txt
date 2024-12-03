@@ -10,3 +10,15 @@
 /Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/refint/Database.dll
 /Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/Database.pdb
 /Users/andrijsorokovskij/Documents/programming/C#/Database/Database/obj/Debug/net8.0/ref/Database.dll
+D:\progects\c#\CustomDb\Database\bin\Debug\net8.0\Database.deps.json
+D:\progects\c#\CustomDb\Database\bin\Debug\net8.0\Database.dll
+D:\progects\c#\CustomDb\Database\bin\Debug\net8.0\Database.pdb
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.GeneratedMSBuildEditorConfig.editorconfig
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.AssemblyInfoInputs.cache
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.AssemblyInfo.cs
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.csproj.CoreCompileInputs.cache
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.sourcelink.json
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.dll
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\refint\Database.dll
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\Database.pdb
+D:\progects\c#\CustomDb\Database\obj\Debug\net8.0\ref\Database.dll
