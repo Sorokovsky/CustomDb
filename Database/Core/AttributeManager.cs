@@ -25,7 +25,7 @@ public class AttributeManager
                 var attributes = member.CustomAttributes;
                 foreach (var attribute in attributes)
                     if (IsCustom(attribute.AttributeType))
-                        ProcessAttribute(attribute.AttributeType, member, type);
+                        ProcessAttribute(attribute.AttributeType, member);
             }
         }
     }
@@ -38,9 +38,9 @@ public class AttributeManager
         return attributeInterface != null;
     }
 
-    private static void ProcessAttribute(Type attributeType, MemberInfo member, Type? parent = null)
+    private static void ProcessAttribute(Type attributeType, MemberInfo member)
     {
         var attribute = (IAttribute)Activator.CreateInstance(attributeType)!;
-        attribute?.Process(member, parent);
+        attribute?.Process(member, member.DeclaringType);
     }
 }
