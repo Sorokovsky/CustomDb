@@ -4,10 +4,10 @@ namespace Database.Attributes;
 
 public abstract class Attribute : System.Attribute
 {
-    protected MemberInfo? Member { get;  private set; }
-    
-    protected Type? ParentType { get;  private set; }
-    
+    protected MemberInfo? Member { get; private set; }
+
+    protected Type? ParentType { get; private set; }
+
     public abstract void Process();
 
     public void Initialize(ICustomAttributeProvider provider)

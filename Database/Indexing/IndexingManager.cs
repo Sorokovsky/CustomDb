@@ -4,9 +4,9 @@ namespace Database.Indexing;
 
 public class IndexingManager
 {
-    private static IndexingManager? _instance;
-    
     public delegate bool IsNeed(Index index);
+
+    private static IndexingManager? _instance;
 
     private readonly LinkedList<Index> _indexes;
 
