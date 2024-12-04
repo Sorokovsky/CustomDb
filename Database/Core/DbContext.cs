@@ -11,7 +11,7 @@ public abstract class DbContext
 
     protected DbContext()
     {
-        _indexing = IndexingManager.Singleton();
+        _indexing = IndexingManager.Instance;
         _attributeManager = new AttributeManager();
     }
 

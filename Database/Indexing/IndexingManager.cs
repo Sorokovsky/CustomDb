@@ -15,7 +15,9 @@ public class IndexingManager
         _indexes = [];
     }
 
-    public static IndexingManager Singleton()
+    public static IndexingManager Instance => Singleton();
+
+    private static IndexingManager Singleton()
     {
         if (_instance == null) _instance = new IndexingManager();
         return _instance;
