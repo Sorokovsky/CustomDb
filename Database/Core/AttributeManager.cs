@@ -1,46 +1,50 @@
 using System.Reflection;
+using Database.Attributes;
 using Database.Contracts;
+using Attribute = Database.Attributes.Attribute;
 
 namespace Database.Core;
 
 public class AttributeManager
 {
-    private List<Type> _types;
+    private readonly List<Type> _types = [];
 
-    public void CollectTypes()
+    public AttributeManager()
     {
-        _types = new List<Type>();
+        CollectTypes();
+        ExecuteAttributes();
+    }
+
+    private void CollectTypes()
+    {
+        _types.Clear();
         AppDomain.CurrentDomain.GetAssemblies()
-            .Select(x => x.GetTypes())
-            .ToList().ForEach(a => a.ToList().ForEach(x => _types.Add(x)));
+            .Select(assembly => assembly.GetTypes()
+            )
+            .ToList()
+            .ForEach(x => _types.AddRange(x));
     }
 
-    public void ExecuteAttributes()
+    private void ExecuteAttributes()
     {
-        foreach (var type in _types)
+        _types.ForEach(ProcessType);
+    }
+
+    private static void ProcessType(Type type)
+    {
+        var attributeProviders = new LinkedList<ICustomAttributeProvider>([type]);
+        type.GetMembers().ToList().ForEach(x => attributeProviders.AddLast(x));
+        attributeProviders.ToList().ForEach(ProcessAttributeProvider);
+    }
+
+    private static void ProcessAttributeProvider(ICustomAttributeProvider provider)
+    {
+        var attributes = provider.GetCustomAttributes(true);
+        foreach (var attribute in attributes)
         {
-            var members = type.GetMembers();
-            foreach (var member in members)
-            {
-                var attributes = member.CustomAttributes;
-                foreach (var attribute in attributes)
-                    if (IsCustom(attribute.AttributeType))
-                        ProcessAttribute(attribute.AttributeType, member);
-            }
+            var customAttribute = attribute as Attribute;
+            customAttribute?.Initialize(provider);
+            customAttribute?.Process();
         }
-    }
-
-    private static bool IsCustom(Type attribute)
-    {
-        var attributeInterface = attribute
-            .GetInterfaces()
-            .FirstOrDefault(x => x.Name == nameof(IAttribute));
-        return attributeInterface != null;
-    }
-
-    private static void ProcessAttribute(Type attributeType, MemberInfo member)
-    {
-        var attribute = (IAttribute)Activator.CreateInstance(attributeType)!;
-        attribute?.Process(member, member.DeclaringType);
     }
 }

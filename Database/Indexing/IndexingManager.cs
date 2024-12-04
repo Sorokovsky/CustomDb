@@ -4,9 +4,22 @@ namespace Database.Indexing;
 
 public class IndexingManager
 {
+    private static IndexingManager? _instance;
+    
     public delegate bool IsNeed(Index index);
 
-    private readonly LinkedList<Index> _indexes = [];
+    private readonly LinkedList<Index> _indexes;
+
+    private IndexingManager()
+    {
+        _indexes = [];
+    }
+
+    public static IndexingManager Singleton()
+    {
+        if (_instance == null) _instance = new IndexingManager();
+        return _instance;
+    }
 
     public List<IndexUnit> GetDependencies(Type type)
     {

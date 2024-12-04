@@ -11,10 +11,8 @@ public abstract class DbContext
 
     protected DbContext()
     {
-        _indexing = new IndexingManager();
+        _indexing = IndexingManager.Singleton();
         _attributeManager = new AttributeManager();
-        _attributeManager.CollectTypes();
-        _attributeManager.ExecuteAttributes();
     }
 
     public static DbEvents Events { get; private set; } = new();
