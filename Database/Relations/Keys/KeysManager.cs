@@ -28,6 +28,11 @@ public class KeysManager
         SaveKeys(keys, key.Type);
     }
 
+    private bool HasKey(LinkedList<Key> keys, Key key)
+    {
+        return keys.FirstOrDefault(x => x.Equals(key)) != null;
+    }
+
     private static string PrepareFilePath(KeyTypes type)
     {
         return $"{type.ToString()}.dat";

@@ -13,9 +13,23 @@ public class Key
 
     public KeyTypes Type { get; private set; }
 
-    public string Property { get; private set; }
+    public string Property { get; }
 
-    public string Parent { get; private set; }
+    public string Parent { get; }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Key otherKey)
+        {
+            return ToString().Equals(otherKey.ToString());
+        }
+        return false;
+    }
+
+    public override string ToString()
+    {
+        return $"{Parent}.{Property}";
+    }
 
     public static Key CreatePrimaryKey(string property, string parent)
     {
