@@ -19,10 +19,7 @@ public class Key
 
     public override bool Equals(object? obj)
     {
-        if (obj is Key otherKey)
-        {
-            return ToString().Equals(otherKey.ToString());
-        }
+        if (obj is Key otherKey) return ToString().Equals(otherKey.ToString());
         return false;
     }
 

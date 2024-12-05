@@ -7,13 +7,13 @@ public class DbContext : Database.Core.DbContext
 {
     private static DbContext? _instance;
 
-    public static DbContext Instance => Singleton();
-
-    public Repository<BaseEntity> Entities { get; } = new Repository<BaseEntity>();
-    
     private DbContext()
     {
     }
+
+    public static DbContext Instance => Singleton();
+
+    public Repository<BaseEntity> Entities { get; } = new();
 
     private static DbContext Singleton()
     {
