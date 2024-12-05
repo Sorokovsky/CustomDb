@@ -4,18 +4,18 @@ using Database.Relations.Keys;
 namespace Database.Attributes;
 
 [AttributeUsage(AttributeTargets.Property)]
-public class KeyAttribute : Attribute
+public class PrimaryKeyAttribute : Attribute
 {
     public override void Process()
     {
-        var property = GetProperty(Member!);
+        var property = ConvertMemberToProperty();
         var key = Key.CreatePrimaryKey(property.Name, ParentType!.Name);
         var manager = new KeysManager();
         manager.TryAddKey(key);
     }
 
-    private static PropertyInfo GetProperty(MemberInfo member)
+    private PropertyInfo ConvertMemberToProperty()
     {
-        return (PropertyInfo)member;
+        return (PropertyInfo)Member!;
     }
 }
