@@ -10,9 +10,9 @@ public class Repository<T>
     private readonly IStorage<LinkedList<T>> _storage;
     private LinkedList<T> _list = [];
 
-    public Repository(string filePath)
+    public Repository()
     {
-        _storage = new FileStorage<LinkedList<T>>("database", filePath);
+        _storage = new FileStorage<LinkedList<T>>("database/tables", typeof(T).Name);
         Load();
     }
 

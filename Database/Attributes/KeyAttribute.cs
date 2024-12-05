@@ -9,7 +9,9 @@ public class KeyAttribute : Attribute
     public override void Process()
     {
         var property = GetProperty(Member!);
-        var key = Key.CreatePrimaryKey(property);
+        var key = Key.CreatePrimaryKey(property.Name, ParentType!.Name);
+        var manager = new KeysManager();
+        manager.AddKey(key);
     }
 
     private PropertyInfo GetProperty(MemberInfo member)

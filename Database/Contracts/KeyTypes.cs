@@ -1,4 +1,4 @@
-namespace Database.Relations.Keys;
+namespace Database.Contracts;
 
 public enum KeyTypes
 {

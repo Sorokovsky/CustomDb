@@ -4,6 +4,7 @@ public class DbContext : Database.Core.DbContext
 {
     private static DbContext? _instance;
 
+
     private DbContext()
     {
     }

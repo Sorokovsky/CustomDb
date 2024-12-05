@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X9jDCW08wVU=",
+  "dgSpecHash": "x65A/zumJkA=",
   "success": true,
-  "projectFilePath": "D:\\progects\\c#\\CustomDb\\Database\\Database.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Андрей\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
-    "C:\\Users\\Андрей\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
-    "C:\\Users\\Андрей\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512"
-  ],
+  "projectFilePath": "/Users/andrijsorokovskij/Documents/programming/C#/Database/Database/Database.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
