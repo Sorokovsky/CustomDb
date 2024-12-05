@@ -20,6 +20,7 @@ public class Repository<T>
 
     public T Add(T item)
     {
+        DbContext.Events.OnPreCreated(item!);
         var addedItem = _list.AddLast(item).Value;
         Save();
         if (item != null) DbContext.Events.OnCreated(item);

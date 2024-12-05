@@ -47,7 +47,7 @@ public class KeysManager
 
     private static string PrepareFilePath(KeyTypes type)
     {
-        return $"{type.ToString()}.dat";
+        return $"{type.ToString()}";
     }
 
     private static void SaveKeys(LinkedList<Key> keys, KeyTypes type)

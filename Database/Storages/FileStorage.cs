@@ -11,7 +11,7 @@ public class FileStorage<T> : IStorage<T> where T : class
     public FileStorage(string folder, string filePath)
     {
         _folder = folder;
-        _filePath = $"{_folder}/{filePath}";
+        _filePath = $"{_folder}/{filePath}.dat";
     }
 
     public T? Load()
