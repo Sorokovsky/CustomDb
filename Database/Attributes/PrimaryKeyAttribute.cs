@@ -39,6 +39,6 @@ public class PrimaryKeyAttribute : Attribute
     private void OnCreatedAt(object entity)
     {
         var newId = _keyGenerator.NewKey;
-        var repo = RepositoryUtil.GetCurrentRepository(entity.GetType());
+        var repo = RepositoryUtil.GetCurrentRepositoryType(entity.GetType());
     }
 }
