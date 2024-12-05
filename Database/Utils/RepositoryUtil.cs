@@ -4,12 +4,18 @@ namespace Database.Utils;
 
 public class RepositoryUtil
 {
-    public static Repository<dynamic> GetCurrentRepository(Type entityType)
+    public static Type? GetCurrentRepositoryType(Type entityType)
     {
         var dbContextType = typeof(DbContext);
         var subclasses = TypesUtil.GetInheritOf(dbContextType);
         var repos = GetAllRepositories(subclasses);
-        repos.ForEach(x => Console.WriteLine(x.Name));
+        foreach (var repo in repos)
+        {
+            var generics = repo.GetGenericArguments().ToList();
+            var needGenerics = generics.FirstOrDefault(x => x.Name == entityType.Name);
+            if (needGenerics != null)
+                return repo;
+        }
         return null;
     }
 
