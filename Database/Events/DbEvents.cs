@@ -9,6 +9,9 @@ public class DbEvents
     public delegate void Operation(object data);
 
     public event Operation Created;
+
+    public event Operation PreCreated;
+    
     public event Operation Removed;
 
     public event Group Sorted;
@@ -24,6 +27,11 @@ public class DbEvents
     public void OnCreated(object data)
     {
         Created?.Invoke(data);
+    }
+
+    public void OnPreCreated(object data)
+    {
+        PreCreated?.Invoke(data);
     }
 
     public void OnRemoved(object data)

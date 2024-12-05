@@ -15,12 +15,12 @@ public class PrimaryKeyAttribute : Attribute
     public PrimaryKeyAttribute()
     {
         _keyGenerator = new IncrementalKey();
-        DbContext.Events.Created += OnCreatedAt;
+        DbContext.Events.PreCreated += OnPreCreatedAt;
     }
 
     ~PrimaryKeyAttribute()
     {
-        DbContext.Events.Created -= OnCreatedAt;
+        DbContext.Events.PreCreated -= OnPreCreatedAt;
     }
 
     public override void Process()
@@ -36,9 +36,9 @@ public class PrimaryKeyAttribute : Attribute
         return (PropertyInfo)Member!;
     }
 
-    private void OnCreatedAt(object entity)
+    private void OnPreCreatedAt(object entity)
     {
-        var newId = _keyGenerator.NewKey;
-        var repo = RepositoryUtil.GetCurrentRepositoryType(entity.GetType());
+        var property = ConvertMemberToProperty();
+        property.SetValue(entity, _keyGenerator.NewKey);
     }
 }
