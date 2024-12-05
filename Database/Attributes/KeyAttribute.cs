@@ -14,7 +14,7 @@ public class KeyAttribute : Attribute
         manager.TryAddKey(key);
     }
 
-    private PropertyInfo GetProperty(MemberInfo member)
+    private static PropertyInfo GetProperty(MemberInfo member)
     {
         return (PropertyInfo)member;
     }
