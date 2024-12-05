@@ -1,11 +1,12 @@
 using System.Reflection;
+using Database.Utils;
 using Attribute = Database.Attributes.Attribute;
 
 namespace Database.Core;
 
 public class AttributeManager
 {
-    private readonly List<Type> _types = [];
+    private List<Type> _types = [];
 
     public AttributeManager()
     {
@@ -15,12 +16,7 @@ public class AttributeManager
 
     private void CollectTypes()
     {
-        _types.Clear();
-        AppDomain.CurrentDomain.GetAssemblies()
-            .Select(assembly => assembly.GetTypes()
-            )
-            .ToList()
-            .ForEach(x => _types.AddRange(x));
+        _types = TypesUtil.Types;
     }
 
     private void ExecuteAttributes()
