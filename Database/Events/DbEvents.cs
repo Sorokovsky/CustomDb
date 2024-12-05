@@ -11,7 +11,7 @@ public class DbEvents
     public event Operation Created;
 
     public event Operation PreCreated;
-    
+
     public event Operation Removed;
 
     public event Group Sorted;
