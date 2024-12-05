@@ -8,27 +8,39 @@ public class KeysManager
     private const string Folder = "database/keys";
     private readonly LinkedList<Key> _emptyList = [];
 
-    public void AddKey(Key key)
+    public bool TryAddKey(Key key)
     {
         var keys = GetKeys(key.Type);
-        keys.AddLast(key);
-        SaveKeys(keys, key.Type);
+        if (HasKey(keys, key) == false)
+        {
+            keys.AddLast(key);
+            SaveKeys(keys, key.Type);
+            return true;
+        }
+
+        return false;
     }
 
-    public LinkedList<Key> GetKeys(KeyTypes type)
+    private LinkedList<Key> GetKeys(KeyTypes type)
     {
         var result = FileStorage<LinkedList<Key>>.LoadFromFile(Folder, PrepareFilePath(type));
         return result ?? _emptyList;
     }
 
-    public void RemoveKey(Key key)
+    public bool TryRemoveKey(Key key)
     {
         var keys = GetKeys(key.Type);
-        keys.Remove(key);
-        SaveKeys(keys, key.Type);
+        if (HasKey(keys, key))
+        {
+            keys.Remove(key);
+            SaveKeys(keys, key.Type);
+            return true;
+        }
+
+        return false;
     }
 
-    private bool HasKey(LinkedList<Key> keys, Key key)
+    private static bool HasKey(LinkedList<Key> keys, Key key)
     {
         return keys.FirstOrDefault(x => x.Equals(key)) != null;
     }

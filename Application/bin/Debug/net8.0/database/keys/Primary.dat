@@ -1,0 +1,7 @@
+[
+  {
+    "Type": 0,
+    "Property": "Id",
+    "Parent": "BaseEntity"
+  }
+]

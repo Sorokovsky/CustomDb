@@ -11,7 +11,7 @@ public class KeyAttribute : Attribute
         var property = GetProperty(Member!);
         var key = Key.CreatePrimaryKey(property.Name, ParentType!.Name);
         var manager = new KeysManager();
-        manager.AddKey(key);
+        manager.TryAddKey(key);
     }
 
     private PropertyInfo GetProperty(MemberInfo member)
