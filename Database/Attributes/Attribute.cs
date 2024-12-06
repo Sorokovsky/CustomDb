@@ -9,6 +9,8 @@ public abstract class Attribute : System.Attribute
     protected Type? ParentType { get; private set; }
 
     public abstract void Process();
+    
+    public abstract void Construct();
 
     public void Initialize(ICustomAttributeProvider provider)
     {
@@ -22,5 +24,6 @@ public abstract class Attribute : System.Attribute
             ParentType = provider.GetType();
             Member = null;
         }
+        Construct();
     }
 }

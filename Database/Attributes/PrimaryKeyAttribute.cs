@@ -3,17 +3,20 @@ using Database.Contracts;
 using Database.Core;
 using Database.Relations.Keys;
 using Database.Relations.Keys.Generators;
+using Database.Storages;
 
 namespace Database.Attributes;
 
 [AttributeUsage(AttributeTargets.Property)]
 public class PrimaryKeyAttribute : Attribute
 {
-    private readonly IKeyGenerator _keyGenerator;
+    private IKeyGenerator _keyGenerator;
 
-    public PrimaryKeyAttribute()
+    public override void Construct()
     {
-        _keyGenerator = new IncrementalKey();
+        var lastId =  FileStorage<string>.LoadFromFile("database/lastKeys", ParentType?.Name!) ?? "0";
+        var lastKey = int.Parse(lastId);
+        _keyGenerator = new IncrementalKey(lastKey);
         DbContext.Events.PreCreated += OnPreCreatedAt;
     }
 
@@ -38,6 +41,8 @@ public class PrimaryKeyAttribute : Attribute
     private void OnPreCreatedAt(object entity)
     {
         var property = ConvertMemberToProperty();
-        property.SetValue(entity, _keyGenerator.NewKey);
+        var newKey = _keyGenerator.NewKey;
+        property.SetValue(entity, newKey);
+        FileStorage<string>.SaveToFile("database/lastKeys", $"{ParentType?.Name}", $"{newKey}");
     }
 }
