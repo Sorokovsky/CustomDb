@@ -4,6 +4,7 @@ using Database.Core;
 using Database.Relations.Keys;
 using Database.Relations.Keys.Generators;
 using Database.Storages;
+using Database.Utils;
 
 namespace Database.Attributes;
 
@@ -14,6 +15,9 @@ public class PrimaryKeyAttribute : Attribute
 
     public override void Construct()
     {
+        var property = ConvertMemberToProperty();
+        if (TypesUtil.IsNumericType(property.PropertyType) == false)
+            throw new ArgumentException($"The type {property.PropertyType} is not a numeric type");
         var lastId =  FileStorage<string>.LoadFromFile("database/lastKeys", PrepareFilePath()) ?? "0";
         var lastKey = int.Parse(lastId);
         _keyGenerator = new IncrementalKey(lastKey);
