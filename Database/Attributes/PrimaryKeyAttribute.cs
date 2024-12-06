@@ -14,7 +14,7 @@ public class PrimaryKeyAttribute : Attribute
 
     public override void Construct()
     {
-        var lastId =  FileStorage<string>.LoadFromFile("database/lastKeys", ParentType?.Name!) ?? "0";
+        var lastId =  FileStorage<string>.LoadFromFile("database/lastKeys", PrepareFilePath()) ?? "0";
         var lastKey = int.Parse(lastId);
         _keyGenerator = new IncrementalKey(lastKey);
         DbContext.Events.PreCreated += OnPreCreatedAt;
@@ -43,6 +43,11 @@ public class PrimaryKeyAttribute : Attribute
         var property = ConvertMemberToProperty();
         var newKey = _keyGenerator.NewKey;
         property.SetValue(entity, newKey);
-        FileStorage<string>.SaveToFile("database/lastKeys", $"{ParentType?.Name}", $"{newKey}");
+        FileStorage<string>.SaveToFile("database/lastKeys", PrepareFilePath(), $"{newKey}");
+    }
+
+    private string PrepareFilePath()
+    {
+        return $"{ParentType?.Name}.{Member?.Name}";
     }
 }
